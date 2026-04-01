@@ -1,5 +1,5 @@
 ## INSTALLATION
-First download the VEXLearn Guide.pdf. The PDF file contains the instructions on how to download, setup, and use the template. Please follow the instructions in the setup guide carefully to avoid any issues. If you encounter any issues or found a bug, please report it to me via the "Issues" tab on the top left, your feedback is hugely appreciated.
+Go to https://github.com/noobieisgod/VEXLearn-Template/releases. First download the VEXLearn Guide.pdf. The PDF file contains the instructions on how to download, setup, and use the template. Please follow the instructions in the setup guide carefully to avoid any issues. If you encounter any issues or found a bug, please report it to me via the "Issues" tab on the top left, your feedback is hugely appreciated.
 
 ## PREREQUISITES
 ### Robot Hardware

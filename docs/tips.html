@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips for Coders – VEXLearn</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <style>
+    .tip-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      transition: var(--transition);
+      border-left: 4px solid var(--accent-purple);
+    }
+    .tip-card:hover {
+      border-color: var(--accent-purple);
+      background: var(--bg-hover);
+    }
+    .tip-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .tip-num {
+      min-width: 28px;
+      height: 28px;
+      background: var(--accent-purple);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .tip-body p { margin-bottom: 0; }
+    .tip-body p + p { margin-top: 10px; }
+    .tip-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .tip-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .personal-note {
+      background: linear-gradient(135deg, rgba(123,63,228,0.08), rgba(245,166,35,0.05));
+      border: 1px solid rgba(123,63,228,0.2);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .personal-note-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .personal-note-icon {
+      font-size: 1.3rem;
+    }
+    .personal-note-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-purple-light);
+    }
+    .personal-note p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 0;
+    }
+    .personal-note p + p {
+      margin-top: 10px;
+    }
+    .order-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .flow-item {
+      background: rgba(123,63,228,0.15);
+      border: 1px solid rgba(123,63,228,0.3);
+      border-radius: var(--radius);
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-purple-light);
+      white-space: nowrap;
+    }
+    .flow-arrow {
+      color: var(--text-muted);
+      padding: 0 8px;
+      font-size: 1rem;
+    }
+    .section-intro {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 680px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <header>
+    <nav class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="images/vexlearn-icon.png?v=4" alt="VEXLearn" class="nav-logo-img" height="51">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="setup.html">Setup</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="cpp.html">C++ Fundamentals</a></li>
+        <li><a href="vex-concepts.html">VEX Concepts</a></li>
+      </ul>
+      <a href="https://github.com/noobieisgod/VEXLearn-Template" target="_blank" rel="noopener" class="nav-download-btn">Download Template</a>
+      <button class="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo-wrap">
+        <img src="images/vexlearn-logo.png?v=4" alt="VEXLearn" class="sidebar-logo" height="70">
+        <a href="index.html" class="sidebar-main-menu">Main Menu</a>
+      </div>
+      <div class="toc-title">Tips for Coders</div>
+      <ul class="toc-list">
+        <li><a href="#autonomous">Writing Autonomous Functions</a></li>
+        <li><a href="#templates">Rely on a Template</a></li>
+        <li><a href="#role">Your Role Not Being Valued</a></li>
+        <li><a href="#notebook">Engineering Notebook &amp; Interviews</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="page-hero">
+        <h1>Tips for <span class="highlight">Coders</span></h1>
+        <p>Real advice from two years of VEX competition, covering autonomous functions, burnout, templates, and team dynamics.</p>
+        <div class="page-badges">
+          <span class="badge badge-purple">Experience</span>
+          <span class="badge badge-yellow">Best Practices</span>
+        </div>
+      </div>
+
+      <div class="personal-note">
+        <div class="personal-note-header">
+          <span class="personal-note-icon">📖</span>
+          <span class="personal-note-label">Personal Note</span>
+        </div>
+        <p>Over the course of my two year journey in VEX, I dealt with many situations: a mentor who wasn't helpful, being blamed for hardware limitations, and burnout. These experiences weren't fun, and I want to share what I've learned with any coder who might be in a similar situation.</p>
+      </div>
+
+      <!-- Autonomous -->
+      <h2 id="autonomous">Writing Autonomous Functions</h2>
+      <p class="section-intro">
+        Writing the autonomous function is the most time-consuming part of being the coder. Autonomous code runs during the 15-second match autonomous period or skills autonomous, making the robot follow a set path you programmed.
+      </p>
+
+      <div class="tip-card">
+        <div class="tip-header">
+          <div class="tip-num">1</div>
+          <div class="tip-body">
+            <div class="tip-title">It takes longer than you think</div>
+            <p class="tip-text">Writing autonomous functions is very tiring, very boring, and very time-intensive. You'll get about 90% of the way there in the first few hours, but increasing reliability and performance can take weeks more.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-header">
+          <div class="tip-num">2</div>
+          <div class="tip-body">
+            <div class="tip-title">Properly tune your PID first</div>
+            <p class="tip-text">Make sure your PID movement functions are <strong>properly tuned</strong>. Ideally, the margin of error for 1 meter is &lt;0.5 cm, and for 3 meters is &lt;3 cm. You <strong>will not</strong> save time by having poorly tuned PID.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card" style="border-left-color: var(--accent-yellow);">
+        <div class="tip-header">
+          <div class="tip-num" style="background: var(--accent-yellow); color: #111;">3</div>
+          <div class="tip-body">
+            <div class="tip-title">Keep the battery above 75%</div>
+            <p class="tip-text">If your robot's battery is below 75%, it <strong>will</strong> cause deviations in movement. Never tune autonomous functions on a low battery; you won't save time by skipping the battery change.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card" style="border-left-color: var(--accent-yellow);">
+        <div class="tip-header">
+          <div class="tip-num" style="background: var(--accent-yellow); color: #111;">4</div>
+          <div class="tip-body">
+            <div class="tip-title">Refill piston gas tubes</div>
+            <p class="tip-text">If your robot uses pistons and gas tubes, refill them at least once every two runs. Your route won't matter if the pistons fail mid-run.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-header">
+          <div class="tip-num">5</div>
+          <div class="tip-body">
+            <div class="tip-title">Never solo the autonomous writing process</div>
+            <p class="tip-text">If you're the only programmer, <strong>never solo it</strong>. Having a buddy reset the field, put the robot back in position, and record runs makes the process dramatically faster and prevents burnout. If you're in a larger group, designate someone for field cleanup.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-header">
+          <div class="tip-num">6</div>
+          <div class="tip-body">
+            <div class="tip-title">Record your runs on video</div>
+            <p class="tip-text">If you've been stuck on a section, use your phone to record the run. You can replay it multiple times and diagnose the problem much faster than watching it once live. Use a stand if you don't have a buddy to film.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-header">
+          <div class="tip-num">7</div>
+          <div class="tip-body">
+            <div class="tip-title">Give yourself at least a week, and follow this task order</div>
+            <p class="tip-text">Don't be discouraged by how long it takes, especially if you're doing it solo. Some programmers can write a great autonomous in an afternoon, others need two months. Follow this task order:</p>
+            <div class="order-flow" style="margin-top:14px;">
+              <span class="flow-item">Tune PID</span>
+              <span class="flow-arrow">&#8594;</span>
+              <span class="flow-item">Design teamwork routes</span>
+              <span class="flow-arrow">&#8594;</span>
+              <span class="flow-item">Write 15s autonomous</span>
+              <span class="flow-arrow">&#8594;</span>
+              <span class="flow-item">Design skills routes*</span>
+              <span class="flow-arrow">&#8594;</span>
+              <span class="flow-item">Write skills autonomous*</span>
+            </div>
+            <p class="tip-text" style="margin-top:10px;">*Only if you have time. Teamwork autonomous matters more; skills needs to be exceptional to win awards on its own.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-header">
+          <div class="tip-num">8</div>
+          <div class="tip-body">
+            <div class="tip-title">Use a physical aligner</div>
+            <p class="tip-text">An aligner is a physical device that ensures your robot's starting position is nearly identical every run. Ask your builder to make one, or build one yourself. It is <strong>very important</strong> for consistent results.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">💡</span>
+        <div class="callout-content">
+          <p>If you're writing <strong>code skills</strong> (longer distances), consider switching to <a href="https://github.com/JacksonAreaRobotics/JAR-Template" target="_blank" rel="noopener"><strong>JAR Template</strong></a> or <a href="https://github.com/LemLib/LemLib" target="_blank" rel="noopener"><strong>LemLib</strong></a>: they include odometry support which is essential for skills. VEXLearn is focused on teaching and simpler tasks.</p>
+        </div>
+      </div>
+
+      <!-- Templates -->
+      <h2 id="templates">Rely on a Template</h2>
+      <p class="section-intro">
+        If you don't have the time to write your own custom VEX software, don't be afraid to use an existing template for competition.
+      </p>
+
+      <div class="personal-note">
+        <div class="personal-note-header">
+          <span class="personal-note-icon">💬</span>
+          <span class="personal-note-label">My Experience</span>
+        </div>
+        <p>My mentor encouraged our three-person team to write our own software from scratch. Looking back, this was a mistake for a small team. Writing custom code requires extensive testing, debugging, and time, which is also time you need for autonomous tuning. I wasn't told about templates until very late in my second year.</p>
+      </div>
+
+      <p>The best competition-ready templates available are:</p>
+      <div class="card-grid">
+        <a href="https://github.com/JacksonAreaRobotics/JAR-Template" target="_blank" rel="noopener" class="card">
+          <span class="card-icon">📦</span>
+          <div class="card-title">JAR Template</div>
+          <p class="card-desc">Competition-focused template with built-in PID and odometry. Great for both 15s and skills autonomous.</p>
+        </a>
+        <a href="https://github.com/LemLib/LemLib" target="_blank" rel="noopener" class="card">
+          <span class="card-icon">📦</span>
+          <div class="card-title">LemLib</div>
+          <p class="card-desc">Feature-rich template with coordinate systems and odometry. Highly reliable for skills autonomous.</p>
+        </a>
+      </div>
+
+      <div class="callout success">
+        <span class="callout-icon">✅</span>
+        <div class="callout-content">
+          <p>Both templates only require you to set up your robot config and tune PID. They handle odometry and coordinate systems automatically, and are very reliable for competition use.</p>
+          <p>That said, a well-written custom software has a higher performance ceiling than any template.</p>
+        </div>
+      </div>
+
+      <!-- Role -->
+      <h2 id="role">Your Role Not Being Valued</h2>
+
+      <div class="personal-note">
+        <div class="personal-note-header">
+          <span class="personal-note-icon">📖</span>
+          <span class="personal-note-label">Personal Story</span>
+        </div>
+        <p>I was part of a three-person team: one builder, one driver, and me as the sole coder. In our first year, poor coordination meant the builder often only finished the robot a week to just a few days before competition. With so little time to work on a completed robot, I often stayed up until 3 to 4 AM writing autonomous functions the night before events, alone.</p>
+        <p>When our team lost, I was blamed for weak or unreliable autonomous programs. The truth was that there simply wasn't enough time, support, or resources for the coder role to succeed in those conditions.</p>
+      </div>
+
+      <p>If you follow the tips in this guide, you should be able to avoid these problems. But if you can't, due to team size or lack of support, know that the time investment required to solo-code a competition robot just to win a few awards may not be worth it. <strong>Protect your wellbeing first.</strong></p>
+
+      <!-- Notebook -->
+      <h2 id="notebook">Engineering Notebook &amp; Interviews</h2>
+      <p class="section-intro">
+        If your role is limited to programming, here's how to approach the engineering notebook and judge interviews.
+      </p>
+
+      <h3>Engineering Notebook</h3>
+      <p>Focus your notebook pages on:</p>
+      <ul>
+        <li>The evolution of your software over the season</li>
+        <li>How each version worked and <em>why</em> you wrote it that way</li>
+        <li>The timeline of software changes</li>
+        <li>Photos of autonomous final positions (great for increasing page count)</li>
+      </ul>
+      <div class="callout info">
+        <span class="callout-icon">📒</span>
+        <div class="callout-content">
+          <p>In the Push Back season, this approach yielded about 150 pages of engineering notebook content for a solo programmer.</p>
+        </div>
+      </div>
+
+      <h3>Interviews</h3>
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-content">
+          <p><strong>This template alone will not help your interview.</strong> Judges have heard about PID control thousands of times. Simply describing PID movement won't impress them, and the display screen (while nice) isn't unique.</p>
+          <p>Judges want to hear something <strong>interesting and unique to you</strong>. Think about what problem you solved that nobody else did, what you learned the hard way, or what you built that surprised your teammates. That's what makes a memorable interview.</p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="footer-nav">
+          <a href="setup.html" class="footer-nav-link">&#8592; Setup Guide</a>
+        </div>
+        <div class="footer-nav">
+          <a href="cpp.html" class="footer-nav-link next">C++ Fundamentals &#8594;</a>
+        </div>
+        <button class="back-to-top">&#8593; Top</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

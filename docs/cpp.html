@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Fundamentals – VEXLearn</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <header>
+    <nav class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="images/vexlearn-icon.png?v=4" alt="VEXLearn" class="nav-logo-img" height="51">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="setup.html">Setup</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="cpp.html">C++ Fundamentals</a></li>
+        <li><a href="vex-concepts.html">VEX Concepts</a></li>
+      </ul>
+      <a href="https://github.com/noobieisgod/VEXLearn-Template" target="_blank" rel="noopener" class="nav-download-btn">Download Template</a>
+      <button class="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo-wrap">
+        <img src="images/vexlearn-logo.png?v=4" alt="VEXLearn" class="sidebar-logo" height="70">
+        <a href="index.html" class="sidebar-main-menu">Main Menu</a>
+      </div>
+      <div class="toc-title">C++ Fundamentals</div>
+      <ul class="toc-list">
+        <li><a href="#datatypes">Datatypes</a></li>
+        <li><a href="#syntax">Basic Syntax</a></li>
+        <li class="toc-sub"><a href="#general-syntax">General Syntax</a></li>
+        <li class="toc-sub"><a href="#variables">Variables</a></li>
+        <li class="toc-sub"><a href="#operators">Operators</a></li>
+        <li class="toc-sub"><a href="#loops">Loops &amp; If-Statements</a></li>
+        <li class="toc-sub"><a href="#enum">Enumerators</a></li>
+        <li><a href="#structure">Program Structure</a></li>
+        <li class="toc-sub"><a href="#headers">Header Files</a></li>
+        <li class="toc-sub"><a href="#include">File Integration</a></li>
+        <li class="toc-sub"><a href="#functions">Functions</a></li>
+        <li class="toc-sub"><a href="#namespaces">Namespaces</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="page-hero">
+        <h1>C++ <span class="highlight">Fundamentals</span></h1>
+        <p>The C++ concepts you need to use the VEXLearn template and write VEX software: datatypes, syntax, loops, functions, header files, and namespaces.</p>
+        <div class="page-badges">
+          <span class="badge badge-purple">C++</span>
+          <span class="badge badge-yellow">Beginner</span>
+        </div>
+      </div>
+
+      <!-- Datatypes -->
+      <h2 id="datatypes">Datatypes and Purpose</h2>
+      <p>A datatype defines what kind of data a variable can hold. Here are the datatypes used in the VEXLearn template:</p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Datatype</th>
+              <th>Purpose</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>int</code></td>
+              <td>Holds a whole integer value</td>
+              <td>1, 2, -5, 98729</td>
+            </tr>
+            <tr>
+              <td><code>double</code></td>
+              <td>Holds a number with decimals</td>
+              <td>2.2, 5.7, 1.0, 98794.48</td>
+            </tr>
+            <tr>
+              <td><code>bool</code></td>
+              <td>Holds a true or false value</td>
+              <td>true, false</td>
+            </tr>
+            <tr>
+              <td><code>string</code></td>
+              <td>Holds text</td>
+              <td>"Hello!", "Coding is fun"</td>
+            </tr>
+            <tr>
+              <td><code>void</code></td>
+              <td>Used in function return types (holds no value)</td>
+              <td>None</td>
+            </tr>
+            <tr>
+              <td><code>enum</code></td>
+              <td>A custom-defined datatype</td>
+              <td>MENU, Hello123, John</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted" style="font-size:0.82rem; margin-top:-8px;">These aren't all C++ datatypes, just the ones primarily used in the template.</p>
+
+      <!-- Basic Syntax -->
+      <h2 id="syntax">Basic Syntax</h2>
+
+      <h3 id="general-syntax">General Syntax</h3>
+      <p>Almost everything in C++ ends with a semicolon (<code>;</code>), just like a period ends a sentence. The exceptions are <code>for</code> loops, <code>while</code> loops, and <code>if</code>-statements, which don't need one.</p>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-content">
+          <p>The compiler reads your code from line 1 to the end. If you call a variable or function before it's been defined, you'll get an error. Header files help solve this problem.</p>
+        </div>
+      </div>
+
+      <!-- Variables -->
+      <h3 id="variables">Initializing Variables and Assigning Values</h3>
+      <p>Variables are always initialized like this:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Declare a variable (just reserves the name and type)
+data_type variable_name;
+
+// Declare AND assign a value at the same time
+data_type variable_name = value;</code></pre>
+      </div>
+
+      <p>Examples of declaring and initializing variables:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">int age = 25;
+bool sleeping = true;
+double average = 8.8;
+string greeting = "Hello!";</code></pre>
+      </div>
+
+      <p>Assigning a new value to an already-declared variable (no datatype prefix needed):</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">age = 30;
+sleeping = false;
+average = 9.1;
+greeting = "Goodbye!";</code></pre>
+      </div>
+
+      <!-- Operators -->
+      <h3 id="operators">Mathematical, Assignment, Comparison, and Logical Operators</h3>
+
+      <div class="tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active">Mathematical</button>
+          <button class="tab-btn">Assignment</button>
+          <button class="tab-btn">Comparison</button>
+          <button class="tab-btn">Logical</button>
+        </div>
+
+        <div class="tab-content active">
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Operator</th><th>Purpose</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr><td>+</td><td>Adds two values</td><td>5 + 2, speed1 + speed2</td></tr>
+                <tr><td>-</td><td>Subtracts two values</td><td>5 - 2, speed1 - speed2</td></tr>
+                <tr><td>/</td><td>Divides two values</td><td>5 / 2, speed1 / speed2</td></tr>
+                <tr><td>*</td><td>Multiplies two values</td><td>5 * 2, speed1 * speed2</td></tr>
+                <tr><td>%</td><td>Remainder after division (integers only)</td><td>5 % 2 → 1</td></tr>
+                <tr><td>++</td><td>Increases value by 1</td><td>speed1++ → speed1 + 1</td></tr>
+                <tr><td>--</td><td>Decreases value by 1</td><td>speed1-- → speed1 - 1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-content">
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Operator</th><th>Purpose</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr><td>=</td><td>Assigns a value</td><td>int dogs = 3</td></tr>
+                <tr><td>+=</td><td>Adds then assigns</td><td>x += 3 → x = x + 3</td></tr>
+                <tr><td>-=</td><td>Subtracts then assigns</td><td>x -= 3 → x = x - 3</td></tr>
+                <tr><td>/=</td><td>Divides then assigns</td><td>x /= 3 → x = x / 3</td></tr>
+                <tr><td>*=</td><td>Multiplies then assigns</td><td>x *= 3 → x = x * 3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-content">
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Operator</th><th>Purpose</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr><td>==</td><td>Equal to</td><td>5 == 5 → true</td></tr>
+                <tr><td>!=</td><td>Not equal to</td><td>5 != 3 → true</td></tr>
+                <tr><td>&gt;</td><td>Greater than</td><td>5 > 3 → true</td></tr>
+                <tr><td>&lt;</td><td>Less than</td><td>3 &lt; 5 → true</td></tr>
+                <tr><td>&gt;=</td><td>Greater than or equal to</td><td>5 >= 5 → true</td></tr>
+                <tr><td>&lt;=</td><td>Less than or equal to</td><td>3 &lt;= 5 → true</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-content">
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Operator</th><th>Purpose</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr><td>&amp;&amp;</td><td>True if BOTH sides are true</td><td>true &amp;&amp; true → true<br>false &amp;&amp; true → false</td></tr>
+                <tr><td>||</td><td>True if EITHER side is true</td><td>false || true → true<br>false || false → false</td></tr>
+                <tr><td>!</td><td>Inverts (NOT)</td><td>!false → true<br>!true → false</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loops -->
+      <h3 id="loops">While Loops, For Loops, and If-Statements</h3>
+      <p>These control structures let you run code repeatedly or conditionally.</p>
+
+      <h4>While Loop</h4>
+      <p>Repeats as long as the condition is true:</p>
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">while (statement) {
+    // runs repeatedly while statement is true
+}
+
+// Runs forever (common in VEX driver control loops)
+while (true) {
+    // something
+}
+
+// Real example
+while (dogs >= 3) {
+    // something
+}
+
+while (pistonsAreActivated) {
+    // something
+}</code></pre>
+      </div>
+
+      <h4>For Loop</h4>
+      <p>Runs a set number of times with an index variable:</p>
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Basic structure: initialize ; condition ; increment
+for (int i = 0; i < value; i++) {
+    // runs while i < value, then i increases by 1 each time
+}
+
+// Real example - ramp speed from 10 down to 1
+for (int speed = 10; speed > 0; speed--) {
+    // something
+}</code></pre>
+      </div>
+
+      <h4>If-Statement</h4>
+      <p>Only runs if the condition is true:</p>
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">if (condition) {
+    // runs only when condition is true
+}
+
+// Example
+if (pistonsAreActivated == false) {
+    pistonsAreActivated = true;
+}
+
+// Compact form
+if (speedNow > 6) { speedNow = 6; }</code></pre>
+      </div>
+
+      <h4>Ternary Operator</h4>
+      <p>A compact if-statement for assigning values:</p>
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// variable = (condition) ? valueIfTrue : valueIfFalse;
+int speed = (turboMode) ? 12 : 6;</code></pre>
+      </div>
+      <div class="callout info">
+        <span class="callout-icon">💡</span>
+        <div class="callout-content">
+          <p>You can always replace a ternary operator with a regular <code>if</code>-statement. Ternaries are more concise but less beginner-friendly.</p>
+        </div>
+      </div>
+
+      <!-- Enum -->
+      <h3 id="enum">Enumerators (enum)</h3>
+      <p>An <code>enum</code> is a custom datatype you define. It's used in <code>display.cpp</code> for screen states. You can avoid it unless you specifically need it.</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Define an enum
+enum ScreenState { MENU, MOTORS, BATTERY, TEAM, SOFTWARE };
+
+// Use it like any other datatype
+ScreenState currentScreen = MENU;
+
+// Change it
+currentScreen = MOTORS;</code></pre>
+      </div>
+
+      <!-- Program Structure -->
+      <h2 id="structure">Program Structure</h2>
+      <p>A program can be split into many files that work together. In VEXLearn, you'll see <code>.cpp</code> source files and <code>.h</code> header files.</p>
+
+      <h3 id="headers">Header Files</h3>
+      <p>A header file (<code>.h</code>) contains <em>declarations</em>: it tells other files what exists. The <code>.cpp</code> file contains the actual implementation. Think of the header as a table of contents.</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ (movement.h)</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">#pragma once   // Prevents duplicate inclusion errors
+
+// Only declare functions that other files need to call
+void move(double distance, double heading, double volt_max);
+void turn(double target_heading, double volt_max);</code></pre>
+      </div>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-content">
+          <p>Always start header files with <code>#pragma once</code>. Without it, including the same header multiple times causes "multiple definition" errors in larger projects.</p>
+        </div>
+      </div>
+
+      <p>To declare a function in a header, copy the function signature from the <code>.cpp</code> file, remove the opening <code>{</code>, and add a semicolon:</p>
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// In movement.cpp - full implementation:
+void move(double distance, double heading, double volt_max) {
+    // ... implementation ...
+}
+
+// In movement.h - just the declaration:
+void move(double distance, double heading, double volt_max);</code></pre>
+      </div>
+
+      <h3 id="include">File Integration Through #include</h3>
+      <p>Use <code>#include</code> to bring functions from another file into the current one:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Include your own header files (use quotes)
+#include "movement.h"
+#include "vex.h"
+
+// System/library headers use angle brackets
+#include &lt;cmath&gt;</code></pre>
+      </div>
+
+      <h3 id="functions">Creating and Calling Functions</h3>
+      <p>Functions are reusable blocks of code. Here's the format:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Create a function
+return_type function_name(arguments) {
+    // body
+}
+
+// Example - returns an int
+int getSum(int a, int b) {
+    int c = a + b;
+    return c;
+}
+
+// Most VEX functions return void (nothing)
+void activatePiston() {
+    Piston.set(true);
+}
+
+// Functions can have default argument values
+int getSum(int a = 1, int b = 1) {
+    return a + b;
+}
+// getSum()    → returns 2  (uses defaults)
+// getSum(3,4) → returns 7</code></pre>
+      </div>
+
+      <p>Calling a function:</p>
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Call and discard result
+activatePiston();
+
+// Call and store result
+int sum = getSum(6, 7);  // sum = 13
+
+// Functions can call other functions
+int getSumOfFour(int a, int b, int c, int d) {
+    int ab = getSum(a, b);
+    int cd = getSum(c, d);
+    return getSum(ab, cd);
+}</code></pre>
+      </div>
+
+      <h3 id="namespaces">Namespaces</h3>
+      <p>A namespace is a named scope that groups related functions, based on which library a function comes from. Without a namespace declaration, you'd need to write the full path every time:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Full form - specifying the namespace explicitly
+vex::wait(1, sec);
+
+// Add this line once at the top of your file:
+using namespace vex;
+
+// Now you can write the short form everywhere
+wait(1, sec);</code></pre>
+      </div>
+
+      <div class="callout success">
+        <span class="callout-icon">✅</span>
+        <div class="callout-content">
+          <p>In VEXLearn, <code>using namespace vex;</code> is already included in the template files, so you can call VEX functions directly without the <code>vex::</code> prefix.</p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="footer-nav">
+          <a href="tips.html" class="footer-nav-link">&#8592; Tips for Coders</a>
+        </div>
+        <div class="footer-nav">
+          <a href="vex-concepts.html" class="footer-nav-link next">VEX Concepts &#8594;</a>
+        </div>
+        <button class="back-to-top">&#8593; Top</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

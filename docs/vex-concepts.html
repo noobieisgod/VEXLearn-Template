@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEX Concepts – VEXLearn</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <style>
+    .port-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .port-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .port-card h4 {
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      color: var(--accent-yellow);
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .port-card p { margin: 0; font-size: 0.875rem; color: var(--text-secondary); }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .compare-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .compare-card.winner {
+      border-color: var(--accent-green);
+      background: rgba(46,204,113,0.05);
+    }
+    .compare-card h4 {
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      margin-top: 0;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-card.winner h4 { color: var(--accent-green); }
+    .compare-card ul { margin: 0; padding-left: 18px; }
+    .compare-card ul li { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 6px; }
+    @media (max-width: 600px) {
+      .port-grid, .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <header>
+    <nav class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="images/vexlearn-icon.png?v=4" alt="VEXLearn" class="nav-logo-img" height="51">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="setup.html">Setup</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="cpp.html">C++ Fundamentals</a></li>
+        <li><a href="vex-concepts.html">VEX Concepts</a></li>
+      </ul>
+      <a href="https://github.com/noobieisgod/VEXLearn-Template" target="_blank" rel="noopener" class="nav-download-btn">Download Template</a>
+      <button class="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo-wrap">
+        <img src="images/vexlearn-logo.png?v=4" alt="VEXLearn" class="sidebar-logo" height="70">
+        <a href="index.html" class="sidebar-main-menu">Main Menu</a>
+      </div>
+      <div class="toc-title">VEX Concepts</div>
+      <ul class="toc-list">
+        <li><a href="#connecting">Connecting to the Brain</a></li>
+        <li><a href="#downloading">Downloading Software</a></li>
+        <li><a href="#oop">OOP &amp; VEX Objects</a></li>
+        <li><a href="#ports">How Ports Work</a></li>
+        <li><a href="#gear-ratio">Gear Ratio &amp; Software</a></li>
+        <li><a href="#motors">6 vs 12 Watt Motors</a></li>
+        <li><a href="#threads">VEX Threads</a></li>
+        <li><a href="#pid">PID Controller</a></li>
+        <li class="toc-sub"><a href="#integral-windup">Integral Windup</a></li>
+        <li class="toc-sub"><a href="#pid-visualizer">Interactive PID Demo</a></li>
+        <li><a href="#volt-vs-rpm">Volt vs RPM Control</a></li>
+        <li><a href="#heading">Absolute Heading</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="page-hero">
+        <h1>VEX <span class="highlight">Concepts</span></h1>
+        <p>Everything you need to know about connecting to the VEX Brain, motor configuration, ports, PID control, threads, and inertial heading.</p>
+        <div class="page-badges">
+          <span class="badge badge-purple">VEX V5</span>
+          <span class="badge badge-yellow">PID</span>
+          <span class="badge badge-green">Hardware</span>
+        </div>
+      </div>
+
+      <!-- Connecting -->
+      <h2 id="connecting">Connecting to the VEX Brain</h2>
+      <p>To pair your controller wirelessly with the VEX Brain:</p>
+      <ol class="steps">
+        <li>Make sure your robot has a <strong>VEX Radio</strong> plugged into the Brain</li>
+        <li>Grab a <strong>VEX Smart Cable</strong></li>
+        <li>Use it to physically connect the controller to the Brain</li>
+        <li>Wait <strong>2 seconds</strong> for the connection to establish</li>
+        <li>Disconnect the Smart Cable; the radio will now connect wirelessly automatically</li>
+      </ol>
+
+      <!-- Downloading -->
+      <h2 id="downloading">Downloading Software to the VEX Brain</h2>
+      <p>After writing your program, download it to the Brain using a USB cable:</p>
+      <ol class="steps">
+        <li>Grab the <strong>USB-A to Micro-USB cable</strong> from the VEX Starter Kit</li>
+        <li>Plug the USB-A side (larger) into your computer</li>
+        <li>
+          Plug the Micro-USB side (smaller) into your <strong>controller</strong> or directly into the <strong>VEX Brain</strong>
+          <div class="callout info" style="margin-top:10px;">
+            <span class="callout-icon">ℹ️</span>
+            <div class="callout-content">
+              <p>If connecting via the controller, the controller must already be paired to the Brain wirelessly.</p>
+            </div>
+          </div>
+        </li>
+        <li>In VS Code, click the <strong>Build and Download</strong> button (VEX toolbar)</li>
+        <li>Wait for the download to complete, then run the program from the controller</li>
+      </ol>
+
+      <!-- OOP -->
+      <h2 id="oop">Object Oriented Programming &amp; VEX Objects</h2>
+      <p>Object-oriented programming (OOP) organizes code into objects, each representing a real-world thing. A <strong>class</strong> is the blueprint; an <strong>object</strong> is the actual instance built from it.</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ - Class &amp; Object</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Define a class (blueprint)
+class Robot {
+    int speed;
+
+    // Constructor - runs when object is created
+    Robot() {
+        speed = 0;
+    }
+
+    void move() {
+        // code to move the robot
+    }
+};
+
+// Create an object from the class
+Robot myRobot;
+
+// Use variables and functions on the object
+myRobot.speed = 10;
+myRobot.move();</code></pre>
+      </div>
+
+      <h3>VEX Objects</h3>
+      <p>Everything in <code>robotConfig.cpp</code> is a VEX object: a motor, sensor, piston, or controller created from VEX-provided classes. This is why you call functions like <code>Inertial.heading()</code> instead of just <code>heading()</code>.</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ - robotConfig.cpp examples</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">brain Brain;
+controller Controller1 = controller(primary);
+
+// 12W motor on PORT1, 6:1 gear ratio, reversed
+motor Motor = motor(PORT1, ratio6_1, true);
+
+// Inertial sensor on PORT6
+inertial Inertial = inertial(PORT6);
+
+// Piston on three-wire port C
+digital_out Piston = digital_out(Brain.ThreeWirePort.C);
+
+// Group multiple motors together
+motor_group LeftChassis(LeftFront, LeftBack);</code></pre>
+      </div>
+
+      <!-- Ports -->
+      <h2 id="ports">How Ports Work</h2>
+      <p>Ports connect hardware components to the Brain via cables. There are two types:</p>
+
+      <div class="port-grid">
+        <div class="port-card">
+          <h4>Smart Ports (Top of Brain)</h4>
+          <p>Used for motors, sensors, and the radio. Referenced in code as:</p>
+          <div class="code-block" style="margin-top:12px;">
+            <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+            <pre><code class="language-cpp">PORT1
+PORT6
+PORT20</code></pre>
+          </div>
+        </div>
+        <div class="port-card">
+          <h4>Three-Wire Ports (Side of Brain)</h4>
+          <p>Used for piston controllers and some sensors. Referenced as functions of the Brain object:</p>
+          <div class="code-block" style="margin-top:12px;">
+            <div class="code-block-header"><span class="code-lang">C++</span><button class="copy-btn">Copy</button></div>
+            <pre><code class="language-cpp">Brain.ThreeWirePort.A
+Brain.ThreeWirePort.C
+Brain.ThreeWirePort.H</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-content">
+          <p>If a part isn't connected to the Brain with a cable, it won't appear in software, even if it's configured correctly in <code>robotConfig.cpp</code>.</p>
+        </div>
+      </div>
+
+      <!-- Gear Ratio -->
+      <h2 id="gear-ratio">Gear Ratio's Effect on Software</h2>
+      <p>Gear ratio matters in the <code>move()</code> and <code>moveRPM()</code> functions and in motor initialization. It's used to calculate accurate distances. Always confirm the gear ratio with your builder.</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ - Motor initialization with gear ratio</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// 12W motor with 6:1 internal gear ratio
+motor Motor = motor(PORT1, ratio6_1, false);
+// ratio6_1  = 600 RPM green cartridge
+// ratio18_1 = 200 RPM red cartridge
+// ratio36_1 = 100 RPM blue cartridge
+
+// In movement.cpp - set to match your physical gear ratio
+// Default is 4/3 - replace with your actual ratio
+double gearRatio = 4.0 / 3.0;</code></pre>
+      </div>
+
+      <!-- 6 vs 12 Watt -->
+      <h2 id="motors">6 vs 12 Watt Motors</h2>
+      <p>The only software difference between 6W and 12W motors is how they're initialized:</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>6 Watt Motors</h4>
+          <ul>
+            <li>No internal gear cartridge</li>
+            <li>No gear ratio argument in initialization</li>
+            <li>Fixed RPM</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h4>12 Watt Motors</h4>
+          <ul>
+            <li>Has swappable gear cartridge</li>
+            <li>Requires gear ratio argument (<code>ratio6_1</code>, etc.)</li>
+            <li>Both deliver up to 12V output</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-content">
+          <p>Both motor types deliver 12 volts at full power, so there is no difference in your voltage-based control code.</p>
+        </div>
+      </div>
+
+      <!-- Threads -->
+      <h2 id="threads">VEX Threads</h2>
+      <p>Normally, C++ runs code top-to-bottom, one line at a time. Threads let your program run multiple functions <em>simultaneously</em>; for example, driving forward while updating the screen and spinning an intake all at once.</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ - Thread syntax</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// General syntax
+thread thread_name(function_name);
+
+// From main.cpp in the template
+thread screenThread(BrainRender);
+thread screenThread2(ControllerRender);
+
+// Both BrainRender and ControllerRender now run
+// at the same time as the rest of your program</code></pre>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-content">
+          <p>Aside from the screen render threads already in the template, threads aren't frequently needed in most VEX programs.</p>
+        </div>
+      </div>
+
+      <!-- PID -->
+      <h2 id="pid">Proportional-Integral-Derivative Controller</h2>
+      <p>PID (Proportional-Integral-Derivative) is a feedback-based control loop used to manage precise motor movement. It continuously adjusts power to reduce the gap between where the robot is and where it should be.</p>
+
+      <div class="table-container" style="margin: 20px 0;">
+        <table>
+          <thead><tr><th>Term</th><th>Name</th><th>Role in VEX movement</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>P</td>
+              <td>Proportional</td>
+              <td>Controls acceleration. Higher P = faster acceleration toward target.</td>
+            </tr>
+            <tr>
+              <td>I</td>
+              <td>Integral</td>
+              <td>Corrects accumulated error over time. Helps robot reach target when P+D alone fall short.</td>
+            </tr>
+            <tr>
+              <td>D</td>
+              <td>Derivative</td>
+              <td>Controls deceleration. Higher D = smoother stop, less overshoot.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>In code, the full PID equation reduces to a single line in <code>movement.cpp</code>:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ - movement.cpp PID line</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// distError      = distance to target
+// distErrorInt   = accumulated integral term
+// distErrorPrev  = error from previous loop iteration
+volt_now = (Kp * distError) + (Ki * distErrorInt) + (Kd * (distError - distErrorPrev));</code></pre>
+      </div>
+
+      <h3>Tuning PID Step by Step</h3>
+      <ol class="steps">
+        <li>Choose a test distance (e.g. 1 meter)</li>
+        <li>Set I = 0 and D = 0</li>
+        <li>Increase P until the robot <em>slightly overshoots</em> the target</li>
+        <li>Increase D until the robot stops accurately at the target (or just short)</li>
+        <li>If the robot consistently stops a little short with balanced P and D, increase I slightly until it reaches the target</li>
+      </ol>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-content">
+          <p>Running at max voltage (12V) leads to inaccuracies. A lower cap like 6-8V is fast enough and much more consistent. The power cap is set as the <code>volt_max</code> argument in the <code>move()</code> call.</p>
+        </div>
+      </div>
+
+      <!-- Integral Windup -->
+      <h3 id="integral-windup">Integral Windup</h3>
+      <p>When the motor is already at full power (saturated), the integral term keeps accumulating error even though the motor can't respond anymore. When the robot finally overshoots and error reverses, the integral has built up so much that it takes a long time to "unwind", causing oscillation and sluggish recovery.</p>
+
+      <p>VEXLearn prevents this with two checks in <code>movement.cpp</code>:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ - Integral windup prevention</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// Only accumulate if motor isn't already saturated
+if (fabs(volt_now) < volt_max) {
+    distErrorInt += distError;
+}
+
+// Reset integral on overshoot (error flips sign)
+if (distError * distErrorPrev < 0) {
+    distErrorInt = 0;
+}</code></pre>
+      </div>
+
+      <!-- PID Visualizer -->
+      <h3 id="pid-visualizer">Interactive PID Demo</h3>
+      <p>This simulation models a robot trying to reach a target position. The <strong>Y axis (Position)</strong> shows where the robot is at each moment, starting at 0 and aiming for <strong>1.0 (the target)</strong>. The <strong>X axis (Time)</strong> counts simulation steps, each representing a small fixed time interval.</p>
+      <p>The curve shows how position changes over time as the PID controller applies corrections:</p>
+      <ul>
+        <li><strong>Kp (Proportional):</strong> how hard the robot reacts to how far it is from the target. High Kp = fast response but more overshoot.</li>
+        <li><strong>Ki (Integral):</strong> corrects for accumulated error over time. Useful for eliminating small persistent offsets, but too much causes slow oscillation.</li>
+        <li><strong>Kd (Derivative):</strong> dampens the correction based on how fast the error is changing. Reduces overshoot and helps the robot settle smoothly.</li>
+      </ul>
+      <p>If the curve rises above 1.0 before settling, the robot has <strong>overshot</strong> the target. In a real robot this means it drove past the goal and had to slow down or back up slightly to correct. Adjust the sliders and click <strong>Animate</strong> to see a live run.</p>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-content">
+          <strong>Simulation vs. Real Robot</strong><br>
+          This demo uses a simplified physics model. It assumes constant friction, perfect motor response, and no mechanical noise. Your actual robot has gear slop, uneven floor surfaces, battery voltage drop, and sensor lag that this simulation cannot account for. Use these sliders to build intuition for how each gain affects behavior, then always <strong>tune your PID values on the physical robot</strong> before competition.
+        </div>
+      </div>
+
+      <div class="pid-visualizer">
+        <div class="pid-controls">
+          <div class="pid-control">
+            <label>Kp (Proportional) <span id="pid-kp-val">4.0</span></label>
+            <div class="pid-input-row">
+              <input type="range" id="pid-kp" min="0" max="10" step="0.1" value="4.0">
+              <input type="number" id="pid-kp-num" class="pid-num-input" min="0" max="10" step="0.1" value="4.0">
+            </div>
+          </div>
+          <div class="pid-control">
+            <label>Ki (Integral) <span id="pid-ki-val">0.00</span></label>
+            <div class="pid-input-row">
+              <input type="range" id="pid-ki" min="0" max="0.5" step="0.01" value="0.0">
+              <input type="number" id="pid-ki-num" class="pid-num-input" min="0" max="0.5" step="0.01" value="0.0">
+            </div>
+          </div>
+          <div class="pid-control">
+            <label>Kd (Derivative) <span id="pid-kd-val">0.2</span></label>
+            <div class="pid-input-row">
+              <input type="range" id="pid-kd" min="0" max="10" step="0.1" value="0.2">
+              <input type="number" id="pid-kd-num" class="pid-num-input" min="0" max="10" step="0.1" value="0.2">
+            </div>
+          </div>
+        </div>
+        <canvas id="pid-canvas"></canvas>
+        <button class="pid-btn" id="pid-run">&#9654; Animate</button>
+      </div>
+
+      <!-- Volt vs RPM -->
+      <h2 id="volt-vs-rpm">Volt Control vs RPM Control</h2>
+
+      <div class="compare-grid">
+        <div class="compare-card winner">
+          <h4>&#10003; Volt Control (Recommended)</h4>
+          <ul>
+            <li>Directly sets how much power the motor receives</li>
+            <li>No speed cap: motors can exceed rated RPM when unloaded</li>
+            <li>You control everything, allowing more consistent PID tuning</li>
+            <li>Faster acceleration and higher top-end performance</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h4>&#10007; RPM Control</h4>
+          <ul>
+            <li>Motor self-limits to maintain a fixed RPM</li>
+            <li>Uses a built-in internal PID loop</li>
+            <li>PID inside a PID leads to instability and slower response</li>
+            <li>Less consistent, harder to tune external PID on top of it</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>VEX DC motors follow this relationship:</p>
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">Concept</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">// More voltage → more speed
+// Less voltage → less speed
+// voltage + current → speed + torque
+
+// Volt control in VEX:
+Motor.spin(forward, 6, volt);   // 6 volts forward
+Motor.spin(forward, -6, volt);  // 6 volts reverse
+
+// vs RPM control (avoid for PID):
+Motor.spin(forward, 200, rpm);  // locks to 200 RPM</code></pre>
+      </div>
+
+      <!-- Absolute Heading -->
+      <h2 id="heading">Absolute Heading &amp; Inertial Sensor</h2>
+      <p>The inertial sensor tracks the robot's orientation in degrees (0-360). VEXLearn uses an <strong>absolute heading</strong> system: the sensor always reports the robot's current direction relative to where it started, not how much it has turned in total.</p>
+
+      <div class="table-container">
+        <table>
+          <thead><tr><th>Measurement</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>Inertial.heading()</code></td>
+              <td>Current direction, always 0-360 degrees. Used in all VEXLearn movement functions.</td>
+            </tr>
+            <tr>
+              <td><code>Inertial.rotation()</code></td>
+              <td>Total accumulated rotation, can exceed 360 degrees. Tracks how much the robot has turned in total.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">💡</span>
+        <div class="callout-content">
+          <p>Absolute heading is much easier for autonomous programming; you don't need to track the cumulative result of every previous turn. Just set a target heading and go.</p>
+        </div>
+      </div>
+
+      <h3>Inertial.setHeading()</h3>
+      <p>If your robot starts at an angle that isn't 0°, use <code>setHeading()</code> at the start of your autonomous function to re-zero the sensor:</p>
+
+      <div class="code-block">
+        <div class="code-block-header"><span class="code-lang">C++ - auto.cpp example</span><button class="copy-btn">Copy</button></div>
+        <pre><code class="language-cpp">void myAutonomous() {
+    // Robot starts facing 90 degrees - tell the sensor that
+    Inertial.setHeading(90, degrees);
+
+    // Now all movement functions use 90° as the reference
+    move(500, 90, 8);   // move 500mm forward, facing 90°
+    turn(0, 6);         // turn to face 0°
+    move(300, 0, 8);    // move 300mm forward, facing 0°
+}</code></pre>
+      </div>
+
+      <div class="page-footer">
+        <div class="footer-nav">
+          <a href="cpp.html" class="footer-nav-link">&#8592; C++ Fundamentals</a>
+        </div>
+        <div class="footer-nav">
+          <a href="index.html" class="footer-nav-link next">Back to Home &#8594;</a>
+        </div>
+        <button class="back-to-top">&#8593; Top</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
